@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import {
+    createDrawerNavigator,
+    DrawerContentScrollView,
+    DrawerItemList,
+    DrawerItem
+  } from '@react-navigation/drawer';
 //
 import OnBoardScreen from '../screens/OnboardScreen'
 import LogInScreen from '../screens/Login/LogInScreen'
@@ -26,27 +31,14 @@ import ContactUsScreen from '../screens/Profile/ContactUsScreen'
 import EditProfileScreen from '../screens/Profile/EditProfileScreen'
 import ProfileScreen from '../screens/Profile/ProfileScreen'
 import SettingScreen from '../screens/Profile/SettingScreen'
-
-import {
-    DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem
-  } from '@react-navigation/drawer';
+//
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-
-const LoginStack = createStackNavigator()
 const CheckoutStack = createStackNavigator()
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator()
 
-const Login = () => (
-    <LoginStack.Navigator>
-        <LoginStack.Screen name='LogIn' component={LogInScreen}/>
-        <LoginStack.Screen name='SignIn' component={SignInScreen}/>
-        <LoginStack.Screen name='SignUp' component={SignUpScreen}/>
-    </LoginStack.Navigator>
-)
 
 const CheckoutNav = () => (
     <CheckoutStack.Navigator>
@@ -57,10 +49,16 @@ const CheckoutNav = () => (
     </CheckoutStack.Navigator>
 )
 
-
-
 export default () => {
-    const [ isLogin, setIsLogIn ] = useState(false)
+    const [ isLogin, setIsLogIn ] = useState(false) // replace by token
+    const [ firstTime, setFirstTime ] = useState(null)
+
+    useEffect(() => {
+        AsyncStorage.getItem('@firstTime').then(val => {
+            if(val!=null) setFirstTime(false)
+            else setFirstTime(true)
+        })
+    },[])
 
     function CustomDrawerContent(props) {
         return (
@@ -87,11 +85,13 @@ export default () => {
     )
 
     return <NavigationContainer>
-        {!isLogin
+        {firstTime!== null ? !isLogin
         ? (
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{headerShown: false}}>
+                {firstTime &&
+                <Stack.Screen name='OnBoard' component={OnBoardScreen}/>}
                 <Stack.Screen name='LogIn' component={LogInScreen}/>
-                <Stack.Screen name='SignIn' component={SignInScreen} initialParams={{goto: () => setIsLogIn(true)}}/>
+                <Stack.Screen name='SignIn' component={SignInScreen} initialParams={{goto: () => setIsLogIn(true)}}/>{/* remove init */}
                 <Stack.Screen name='SignUp' component={SignUpScreen}/>
             </Stack.Navigator>
           )
@@ -107,6 +107,7 @@ export default () => {
                 <Stack.Screen name='Setting' component={SettingScreen}/>
             </Stack.Navigator>
           )
+        : <View/>
         }
         
 
