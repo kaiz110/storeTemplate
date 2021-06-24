@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, Image, View } from 'react-native'
+import { StyleSheet, SafeAreaView, Image, View, StatusBar } from 'react-native'
 import { Text, Button } from 'react-native-elements'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { LOGIN_TITLE } from '../../constant'
+import CustomButton from '../../component/CustomButton'
 
 const LogInScreen = ({navigation}) => {
     return <SafeAreaView style={styles.container}>
@@ -18,19 +18,14 @@ const LogInScreen = ({navigation}) => {
         </View>
 
         <View style={{marginTop: 15}}>
-            <Button
-                containerStyle={styles.buttonContainer}
-                buttonStyle={styles.button}
+            <CustomButton
                 title='Log In'
                 onPress={() => navigation.navigate('SignIn')}
             />
-            <Button
-                containerStyle={styles.buttonContainer}
-                buttonStyle={[styles.button, {backgroundColor: 'rgba(0,0,0,0)'}]}
-                titleStyle={{color: 'black'}}
-                type='outline'
+            <CustomButton
                 title='Sign Up'
                 onPress={() => navigation.navigate('SignUp')}
+                type='outline'
             />
         </View>
     </SafeAreaView>
@@ -39,11 +34,12 @@ const LogInScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: StatusBar.currentHeight
     },
     image: {
         width: 190,
         height: 190,
-        margin: 35,
+        margin: 25,
         alignSelf: 'center'
     },
     titleContainer: {
@@ -56,18 +52,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20
     },
-    buttonContainer: {
-        margin: 15,
-        width: '75%',
-        alignSelf: 'center',
-    },
-    button: {
-        height: 49,
-        backgroundColor: 'black',
-        borderRadius: 18,
-        borderColor: 'black',
-        borderWidth: 1
-    }
 })
 
 export default LogInScreen

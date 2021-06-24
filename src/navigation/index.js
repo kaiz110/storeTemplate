@@ -49,13 +49,8 @@ const CheckoutNav = () => (
     </CheckoutStack.Navigator>
 )
 
-async function getFirstTime() {
-    const data = JSON.parse(await AsyncStorage.getItem('@firstTime'))
-    return data
-}
-
 export default () => {
-    const [ isLogin, setIsLogIn ] = useState(false)
+    const [ isLogin, setIsLogIn ] = useState(false) // replace by token
     const [ firstTime, setFirstTime ] = useState(null)
 
     useEffect(() => {
@@ -96,7 +91,7 @@ export default () => {
                 {firstTime &&
                 <Stack.Screen name='OnBoard' component={OnBoardScreen}/>}
                 <Stack.Screen name='LogIn' component={LogInScreen}/>
-                <Stack.Screen name='SignIn' component={SignInScreen} initialParams={{goto: () => setIsLogIn(true)}}/>
+                <Stack.Screen name='SignIn' component={SignInScreen} initialParams={{goto: () => setIsLogIn(true)}}/>{/* remove init */}
                 <Stack.Screen name='SignUp' component={SignUpScreen}/>
             </Stack.Navigator>
           )
