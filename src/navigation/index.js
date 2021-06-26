@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import {
@@ -33,6 +33,9 @@ import ProfileScreen from '../screens/Profile/ProfileScreen'
 import SettingScreen from '../screens/Profile/SettingScreen'
 //
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AntDesign, FontAwesome, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { SCREEN_HEIGHT } from '../constant';
+
 
 
 const CheckoutStack = createStackNavigator()
@@ -67,20 +70,44 @@ export default () => {
             <DrawerItem
                 label="Log Out"
                 onPress={() => setIsLogIn(false)}
-            />
+                labelStyle={styles.label}
+                icon={() => <FontAwesome5 style={styles.i} name='sign-out-alt' size={19}/>}
+            />  
           </DrawerContentScrollView>
         );
     }
 
     const DrawerNav = () => (
-        <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>} screenOptions={{headerTitleAlign: 'center'}}>
-            <Drawer.Screen name='Home' component={HomeScreen}/>
-            <Drawer.Screen name='Shop' component={ShopScreen}/>
-            <Drawer.Screen name='Bag' component={ShoppingBagScreen}/>
-            <Drawer.Screen name='Search' component={SearchScreen}/>
-            <Drawer.Screen name='Order' component={OrderScreen}/>
-            <Drawer.Screen name='WishList' component={WishListScreen}/>
-            <Drawer.Screen name='Profile' component={ProfileScreen}/>
+        <Drawer.Navigator 
+            drawerContent={props => <CustomDrawerContent {...props}/>} 
+            screenOptions={{
+                headerTitleAlign: 'center', 
+                drawerType: 'back',
+                drawerLabelStyle: styles.label,
+                drawerStyle: { paddingTop: SCREEN_HEIGHT/7 },
+            }} 
+        >
+            <Drawer.Screen name='Home' component={HomeScreen} 
+                options={{drawerIcon: () => <FontAwesome5 style={styles.i} name='store-alt' size={15}/>}}
+            />
+            <Drawer.Screen name='Shop' component={ShopScreen} 
+                options={{drawerIcon: () => <AntDesign style={styles.i} name='appstore1' size={18}/>}}
+            />
+            <Drawer.Screen name='Bag' component={ShoppingBagScreen} 
+                options={{drawerIcon: () => <FontAwesome style={styles.i} name='shopping-bag' size={17}/>}}
+            />
+            <Drawer.Screen name='Search' component={SearchScreen} 
+                options={{drawerIcon: () => <FontAwesome5 style={styles.i} name='search' size={18}/>}}
+            />
+            <Drawer.Screen name='Order' component={OrderScreen} 
+                options={{drawerIcon: () => <FontAwesome5 style={styles.i} name='truck' size={16}/>}}
+            />
+            <Drawer.Screen name='WishList' component={WishListScreen} 
+                options={{drawerIcon: () => <AntDesign style={styles.i} name='heart' size={17}/>}}
+            />
+            <Drawer.Screen name='Profile' component={ProfileScreen} 
+                options={{drawerIcon: () => <FontAwesome5 style={styles.i} name='user-alt' size={17}/>}}
+            />
         </Drawer.Navigator>
     )
 
@@ -114,3 +141,15 @@ export default () => {
         
     </NavigationContainer>
 }
+
+const styles = StyleSheet.create({
+    label: {
+        fontWeight: 'bold', 
+        fontSize: 15, 
+        marginLeft: 10
+    },
+    i: {
+        position: 'absolute',
+        left: 10,
+    }
+})
