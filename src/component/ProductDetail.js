@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { StyleSheet, View, TouchableOpacity, Image, SafeAreaView } from 'react-native'
 import { Button, Text, Overlay, Divider } from 'react-native-elements'
 import { NEW_ARRIVALS, SCREEN_WIDTH } from '../constant'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
@@ -59,7 +59,7 @@ const ProductDetail = ({visible, onBack, data}) => {
         isVisible={visible} 
         onBackdropPress={onBack}
     >
-        <View style={styles.overlayContainer}>
+        <SafeAreaView style={styles.overlayContainer}>
             <View style={{flex: 3,backgroundColor: 'lightgrey'}}>
                 <Carousel
                     data={ImageArray}
@@ -117,14 +117,14 @@ const ProductDetail = ({visible, onBack, data}) => {
                     />
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     </Overlay>
 }
 
 const styles = StyleSheet.create({
     overlayContainer: {
         width: SCREEN_WIDTH, 
-        flex: 1
+        flex: 1,
     },
     olBack: {
         position: 'absolute',

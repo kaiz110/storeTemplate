@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View , LogBox, StatusBar, ScrollView } from 'react-native'
+import { StyleSheet, View , LogBox, StatusBar, ScrollView, SafeAreaView } from 'react-native'
 import { Text } from 'react-native-elements'
 import CustomInput from '../../component/CustomInput'
 import CustomButton from '../../component/CustomButton'
@@ -14,37 +14,41 @@ const SignInScreen = ({ route }) => {
     const [ email, setEmail] = useState('')
     const [ password, setPassword ] = useState('')
 
-    return <ScrollView style={styles.container}>
-        <LoginHeader title='Sign In'/>
+    return (
+        <SafeAreaView style={{flex: 1}}>
+            <ScrollView style={styles.container}>
+                <LoginHeader title='Sign In'/>
 
-        <View style={styles.inputContainer}>
-            <CustomInput
-                value={email}
-                onChangeText={setEmail}
-                placeholder='E-mail or phone number'
-            />
-            <CustomInput
-                value={password}
-                onChangeText={setPassword}
-                placeholder='Password'
-                secureTextEntry
-            />
-            <CustomButton
-                title='Log In'
-                onPress={() => func()}
-            />
-        </View>
-        
-        
-        <View style={styles.inputContainer}>
-            <Text style={styles.or}>OR</Text>
+                <View style={styles.inputContainer}>
+                    <CustomInput
+                        value={email}
+                        onChangeText={setEmail}
+                        placeholder='E-mail or phone number'
+                    />
+                    <CustomInput
+                        value={password}
+                        onChangeText={setPassword}
+                        placeholder='Password'
+                        secureTextEntry
+                    />
+                    <CustomButton
+                        title='Log In'
+                        onPress={() => func()}
+                    />
+                </View>
+                
+                
+                <View style={styles.inputContainer}>
+                    <Text style={styles.or}>OR</Text>
 
-            <CustomButton
-                title='Facebook Login'
-                color='#375ba3'
-            />
-        </View>
-    </ScrollView>
+                    <CustomButton
+                        title='Facebook Login'
+                        color='#375ba3'
+                    />
+                </View>
+            </ScrollView>
+        </SafeAreaView>
+    )
 }
 
 const styles = StyleSheet.create({
