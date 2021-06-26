@@ -3,13 +3,13 @@ import {
     StyleSheet, View, FlatList, SafeAreaView, Image, TouchableOpacity, Platform
 } from 'react-native'
 import { Button, Text, Badge } from 'react-native-elements'
-import { SHOP_CATEGORY, NEW_ARRIVALS, SCREEN_WIDTH } from '../../constant'
+import { SHOP_CATEGORY, NEW_ARRIVALS, SCREEN_WIDTH, PRODUCT_IN_BAG } from '../../constant'
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
 import { FontAwesome } from '@expo/vector-icons'
 import ProductDetail from '../../component/ProductDetail'
+import BagHeaderRight from '../../component/BagHeaderRight'
 
 const HomeScreen = ({ navigation }) => {
-    const [ badgeNumber, setBadgeNumber ] = useState(0)
     const [ productDetailOverlay, setProductDetailOverlay ] = useState(false)
     const [ currentProduct, setCurrentProduct ] = useState({name: '', price: ''}) 
     const listHeaderComponent = useCallback(() => headerComponent(), [])
@@ -17,15 +17,7 @@ const HomeScreen = ({ navigation }) => {
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <TouchableOpacity style={styles.bagIcon} onPress={() => navigation.navigate('CheckoutNav')}>
-                    <FontAwesome name='shopping-bag' size={25} />
-                    { badgeNumber > 0 &&
-                        <Badge status='error' value={badgeNumber}
-                            containerStyle={styles.bagIconBadge}
-                        />
-                    }
-                    
-                </TouchableOpacity>
+                <BagHeaderRight num={PRODUCT_IN_BAG} onPress={() => navigation.navigate('CheckoutNav')}/>
             )
         })
     }, [navigation])
@@ -148,15 +140,6 @@ const HomeScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    bagIcon: {
-        padding: 7,
-        marginRight: 5
-    },
-    bagIconBadge: {
-        position: 'absolute', 
-        top: 0, 
-        right: 0
-    },
     cateImageWrap: {
         width: 140,
         height: 60,
@@ -176,7 +159,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'rgba(0,0,0,0.45)',
         borderRadius: 7
     },
     cateText: {

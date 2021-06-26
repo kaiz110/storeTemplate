@@ -11,6 +11,9 @@ export const LOGIN_TITLE = [
     'sales with our mobile app'
 ]
 
+//
+
+export const PRODUCT_IN_BAG = 0
 // DATA
 
 export const WELCOME_IMAGES = [
@@ -45,6 +48,14 @@ export const SHOP_CATEGORY = [
     {
         title: 'DRESSES',
         image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fall-dresses-1-1599681790.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'
+    },
+    {
+        title: 'HATS',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-bucket-hats-to-keep-the-sun-off-your-nose-1618996574.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*'
+    },
+    {
+        title: 'SUNGLASSES',
+        image: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/round-sunglasses-1618524989.png?crop=1.00xw:1.00xh;0,0&resize=1200:*'
     },
 ]
 
