@@ -15,7 +15,7 @@ const ShopScreen = ({navigation}) => {
     }, [navigation])
 
     const renderList = ({item}) => (
-        <TouchableOpacity style={styles.cardWrap} onPress={() => navigation.navigate('ShopDetail')}>
+        <TouchableOpacity style={styles.cardWrap} onPress={() => navigation.navigate('ShopDetail', {headerTitle: item.title})}>
             <Image style={{flex: 1,borderRadius: 6}} source={{uri: item.image}}/>
 
             <View style={styles.textWrap}>

@@ -3,7 +3,7 @@ import {
     StyleSheet, View, FlatList, SafeAreaView, Image, TouchableOpacity, Platform
 } from 'react-native'
 import { Button, Text, Badge } from 'react-native-elements'
-import { SHOP_CATEGORY, NEW_ARRIVALS, SCREEN_WIDTH, PRODUCT_IN_BAG } from '../../constant'
+import { SHOP_CATEGORY, NEW_ARRIVALS, SCREEN_WIDTH, PRODUCT_IN_BAG, CONSTANT_STYLE } from '../../constant'
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
 import { FontAwesome } from '@expo/vector-icons'
 import ProductDetail from '../../component/ProductDetail'
@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
     }
 
     const renderCategoryList = ({ item }) => (
-        <TouchableOpacity style={styles.cateImageWrap} onPress={() => navigation.navigate('ShopDetail')}>
+        <TouchableOpacity style={styles.cateImageWrap} onPress={() => navigation.navigate('ShopDetail', {headerTitle: item.title})}>
             <Image style={styles.cateImage} source={{ uri: item.image }} />
 
             <View style={styles.cateTextWrap}>
@@ -62,8 +62,11 @@ const HomeScreen = ({ navigation }) => {
                 source={{ uri: item.image }}
                 style={style}
             />
-            <Text style={{ marginLeft: 10, fontWeight: 'bold', fontSize: 14 }}>${item.price}</Text>
-            <Text style={{ marginLeft: 10, opacity: 0.6 }}>{item.name}</Text>
+
+            <View style={{marginLeft: 10}}>
+                <Text style={CONSTANT_STYLE.productPrice}>${item.price}</Text>
+                <Text style={CONSTANT_STYLE.productName}>{item.name}</Text>
+            </View>
         </TouchableOpacity>
     )
 
