@@ -119,3 +119,41 @@ export const CLOTHES_DETAIL = [
         image: 'https://www.lafuma.com/media/catalog/product/cache/18/image/640x/9df78eab33525d08d6e5fb8d27136e95/l/f/lfv11318-2768-pantalon-homme-access-cargo-pants-m-beige_2.jpg'
     },
 ]
+
+export const ORDER_PRODUCTS = [
+    {
+        date: 'July 14',//ex
+        products: [
+            {
+                name: 'unisex MIKENKO Tshirt',
+                price: 119,
+                image: 'https://salt.tikicdn.com/cache/w444/ts/product/af/1e/e8/0d86173b8ef93dbbb414214db2d47bee.jpg'
+            },
+            {
+                name: 'Hard-mode Tshirt',
+                price: 99,
+                image: 'https://product.hstatic.net/200000260587/product/f5db6ac485a370fd29b2_08c843d535fa462d908973729df0aa1f_master.jpg'
+            }
+        ]
+    },
+    {
+        date: 'July 1',
+        products: [
+            {
+                name: 'Cloth 3',
+                price: 123.34,
+                image: 'https://i.pinimg.com/originals/82/50/b2/8250b22c145a3c5d4120bcebc6fce18f.jpg'
+            },
+            {
+                name: 'Cloth 4',
+                price: 123.3,
+                image: 'https://i.imgur.com/SGMhCzK.jpg'
+            },
+            {
+                name: 'Cloth 5',
+                price: 11.2,
+                image: 'https://i.pinimg.com/originals/27/63/7f/27637f466ed68032875a7fa26d36a558.png'
+            }
+        ]
+    }
+]
