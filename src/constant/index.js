@@ -157,3 +157,20 @@ export const ORDER_PRODUCTS = [
         ]
     }
 ]
+
+export const SHOPPING_BAG_PRODUCTS = [
+    {
+        name: 'Cloth 4',
+        price: 123.3,
+        image: 'https://i.imgur.com/SGMhCzK.jpg',
+        color: 'white',
+        size: 'M'
+    },
+    {
+        name: 'Cloth 5',
+        price: 11.2,
+        image: 'https://i.pinimg.com/originals/27/63/7f/27637f466ed68032875a7fa26d36a558.png',
+        color: 'white',
+        size: 'M'
+    }
+]
