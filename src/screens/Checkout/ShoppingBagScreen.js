@@ -67,11 +67,14 @@ const ShoppingBagScreen = ({navigation}) => {
 
     return (
         <ScrollView contentContainerStyle={{flex: 1, justifyContent: 'space-between'}}>
-            <FlatList
-                data={SHOPPING_BAG_PRODUCTS}
-                keyExtractor={data => data.name}
-                renderItem={renderItem}
-            />
+            <View>
+                <FlatList
+                    data={SHOPPING_BAG_PRODUCTS}
+                    keyExtractor={data => data.name}
+                    nestedScrollEnabled
+                    renderItem={renderItem}
+                />
+            </View>
 
             <View style={styles.bottomContainer}>
                 <View style={styles.bottomText}>
