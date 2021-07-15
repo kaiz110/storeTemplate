@@ -44,9 +44,13 @@ const Stack = createStackNavigator()
 
 
 const CheckoutNav = () => (
-    <CheckoutStack.Navigator>
-        <CheckoutStack.Screen name='ShoppingBag' component={ShoppingBagScreen}/>
-        <CheckoutStack.Screen name='PaymentMethod' component={PaymentMethodScreen} options={{title: ''}}/>
+    <CheckoutStack.Navigator screenOptions={{title: '', headerStyle: { elevation: 0 }}}>
+        <CheckoutStack.Screen 
+            name='ShoppingBag' 
+            component={ShoppingBagScreen} 
+            options={{title: 'Shopping Bag',headerTitleAlign: 'center'}}
+        />
+        <CheckoutStack.Screen name='PaymentMethod' component={PaymentMethodScreen}/>
         <CheckoutStack.Screen name='Shipping' component={ShippingScreen}/>
         <CheckoutStack.Screen name='Checkout' component={CheckoutScreen}/>
     </CheckoutStack.Navigator>

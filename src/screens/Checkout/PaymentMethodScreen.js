@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useState} from 'react'
 import { StyleSheet, View, Text, Button, FlatList, TouchableOpacity } from 'react-native'
 import { Divider } from 'react-native-elements'
 import { FontAwesome } from '@expo/vector-icons'
+import styles from '../../constant/checkoutStyles'
 
 const  CREDIT_CARDS = [
     {
@@ -62,7 +63,7 @@ const PaymentMethodScreen = ({navigation}) => {
         </View>
     )
 
-    return <View style={{backgroundColor: 'white', flex: 1}}>
+    return <View style={styles.container}>
             <FlatList
                 data={CREDIT_CARDS}
                 keyExtractor={data => data.number}
@@ -83,31 +84,5 @@ const PaymentMethodScreen = ({navigation}) => {
             />
     </View>
 }
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 28, 
-        fontWeight: 'bold',
-        margin: 10
-    },
-    largeIcon: {
-        alignItems: 'center', 
-        width: '100%', 
-        marginVertical: 45
-    },
-    card: {
-        flexDirection: 'row', 
-        alignItems: 'center', 
-        margin: 10
-    },
-    cardText: {
-        marginLeft: 10, 
-        opacity: 0.5
-    },
-    check: {
-        position: 'absolute', 
-        right: 15
-    }
-})
 
 export default PaymentMethodScreen
