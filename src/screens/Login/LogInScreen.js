@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, Image, View, StatusBar } from 'react-native'
+import { StyleSheet, SafeAreaView, Image, View, StatusBar,ScrollView } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 import { LOGIN_TITLE } from '../../constant'
 import CustomButton from '../../component/CustomButton'
 
 const LogInScreen = ({navigation}) => {
-    return <SafeAreaView style={styles.container}>
+    return <ScrollView style={styles.container}>
         <Image
             style={styles.image}
             source={{uri: 'https://toppng.com/uploads/preview/free-fire-png-logo-11569068085c8leiaw15l.png'}}
@@ -28,7 +28,7 @@ const LogInScreen = ({navigation}) => {
                 type='outline'
             />
         </View>
-    </SafeAreaView>
+    </ScrollView>
 }
 
 const styles = StyleSheet.create({
